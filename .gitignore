@@ -1,0 +1,16 @@
+# Backup directories
+nvim.backup.*/
+nvim.backup*/
+
+# Test directories
+test/
+
+# OS files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.log
+*.tmp
