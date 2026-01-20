@@ -1,0 +1,125 @@
+# Yazi 快捷键配置
+
+[manager]
+prepend_keymap = [
+	# 拖拽插件
+	{ on = ["Z"], run = "plugin dragon", desc = "拖拽文件到其他应用 (Shift+Z)" },
+	# searchjump 插件 - 快速搜索跳转
+	{ on = ["J"], run = "plugin searchjump -- autocd", desc = "搜索跳转模式 (自动进入目录)" },
+	# ouch 插件 - 压缩文件
+	{ on = ["C"], run = "plugin ouch", desc = "用 ouch 压缩文件" },
+]
+
+keymap = [
+	# 基础导航
+	{ on = ["<Esc>"], run = "escape", desc = "退出选择模式" },
+	{ on = ["q"], run = "quit", desc = "退出" },
+	{ on = ["Q"], run = "quit --no-cwd-file", desc = "退出（不保存路径）" },
+
+	# 移动
+	{ on = ["k"], run = "arrow -1", desc = "上移" },
+	{ on = ["j"], run = "arrow 1", desc = "下移" },
+	{ on = ["h"], run = "leave", desc = "返回上级" },
+	{ on = ["l"], run = "enter", desc = "进入/打开" },
+
+	{ on = ["<Up>"], run = "arrow -1", desc = "上移" },
+	{ on = ["<Down>"], run = "arrow 1", desc = "下移" },
+	{ on = ["<Left>"], run = "leave", desc = "返回上级" },
+	{ on = ["<Right>"], run = "enter", desc = "进入/打开" },
+
+	{ on = ["K"], run = "arrow -5", desc = "向上 5 项" },
+	{ on = ["J"], run = "arrow 5", desc = "向下 5 项" },
+	{ on = ["g", "g"], run = "arrow -99999999", desc = "到顶部" },
+	{ on = ["G"], run = "arrow 99999999", desc = "到底部" },
+
+	{ on = ["<C-u>"], run = "arrow -50%", desc = "上翻半页" },
+	{ on = ["<C-d>"], run = "arrow 50%", desc = "下翻半页" },
+
+	# 文件操作
+	{ on = ["<Enter>"], run = "open", desc = "打开" },
+	{ on = ["o"], run = "open", desc = "打开" },
+	{ on = ["O"], run = "open --interactive", desc = "交互打开" },
+
+	# 选择
+	{ on = ["<Space>"], run = ["select --state=none", "arrow 1"], desc = "切换选择" },
+	{ on = ["v"], run = "visual_mode", desc = "可视模式" },
+	{ on = ["V"], run = "visual_mode --unset", desc = "退出可视模式" },
+	{ on = ["<C-a>"], run = "select_all --state=true", desc = "全选" },
+
+	# 复制粘贴
+	{ on = ["y"], run = "yank", desc = "复制" },
+	{ on = ["x"], run = "yank --cut", desc = "剪切" },
+	{ on = ["p"], run = "paste", desc = "粘贴" },
+	{ on = ["P"], run = "paste --force", desc = "强制粘贴" },
+
+	# 发送到 Yoink
+	{ on = ["Y"], run = "shell --block '$HOME/.config/yazi/scripts/send-to-yoink.sh \"$@\"'", desc = "发送到 Yoink" },
+
+	# 拖拽文件
+	{ on = ["<A-d>"], run = "shell '$HOME/.config/yazi/scripts/drag.sh \"$@\"'", desc = "拖拽文件 (Option+d)" },
+	{ on = ["Z"], run = "shell '$HOME/.config/yazi/scripts/drag.sh \"$@\"'", desc = "拖拽文件 (Shift+Z)" },
+
+	# 删除
+	{ on = ["d"], run = "remove", desc = "删除" },
+	{ on = ["D"], run = "remove --permanently", desc = "永久删除" },
+
+	# 创建和重命名
+	{ on = ["a"], run = "create", desc = "创建" },
+	{ on = ["r"], run = "rename", desc = "重命名" },
+
+	# 显示
+	{ on = ["."], run = "hidden toggle", desc = "切换隐藏文件" },
+	{ on = ["s"], run = "search fd", desc = "搜索文件" },
+	{ on = ["S"], run = "search rg", desc = "搜索内容" },
+	{ on = [":"], run = "shell", desc = "运行命令" },
+
+	# 排序
+	{ on = [",", "a"], run = "sort alphabetical --dir-first", desc = "按字母排序" },
+	{ on = [",", "m"], run = "sort modified --dir-first", desc = "按修改时间" },
+	{ on = [",", "s"], run = "sort size --dir-first", desc = "按大小" },
+
+	# 标签页
+	{ on = ["t"], run = "tab_create --current", desc = "新建标签" },
+	{ on = ["1"], run = "tab_switch 0", desc = "标签 1" },
+	{ on = ["2"], run = "tab_switch 1", desc = "标签 2" },
+	{ on = ["3"], run = "tab_switch 2", desc = "标签 3" },
+	{ on = ["["], run = "tab_switch -1 --relative", desc = "上一标签" },
+	{ on = ["]"], run = "tab_switch 1 --relative", desc = "下一标签" },
+
+	# 其他
+	{ on = ["w"], run = "tasks_show", desc = "显示任务" },
+	{ on = ["~"], run = "help", desc = "帮助" },
+]
+
+[tasks]
+keymap = [
+	{ on = ["<Esc>"], run = "close", desc = "关闭" },
+	{ on = ["w"], run = "close", desc = "关闭" },
+	{ on = ["k"], run = "arrow -1", desc = "上移" },
+	{ on = ["j"], run = "arrow 1", desc = "下移" },
+]
+
+[select]
+keymap = [
+	{ on = ["<Esc>"], run = "close", desc = "关闭" },
+	{ on = ["<Enter>"], run = "close --submit", desc = "提交" },
+	{ on = ["k"], run = "arrow -1", desc = "上移" },
+	{ on = ["j"], run = "arrow 1", desc = "下移" },
+]
+
+[input]
+keymap = [
+	{ on = ["<Esc>"], run = "close", desc = "关闭" },
+	{ on = ["<Enter>"], run = "close --submit", desc = "提交" },
+	{ on = ["<C-a>"], run = "move -999", desc = "行首" },
+	{ on = ["<C-e>"], run = "move 999", desc = "行尾" },
+	{ on = ["<Backspace>"], run = "backspace", desc = "删除" },
+]
+
+[help]
+keymap = [
+	{ on = ["<Esc>"], run = "escape", desc = "关闭" },
+	{ on = ["q"], run = "close", desc = "关闭" },
+	{ on = ["k"], run = "arrow -1", desc = "上移" },
+	{ on = ["j"], run = "arrow 1", desc = "下移" },
+]
